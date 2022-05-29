@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
       )
 
     ggplot(
-      data = grafico1,mapping = aes(x = anio,y = cantidad)) +
+      data = grafico1,mapping = aes(x = anio, y = cantidad)) +
       geom_col() + 
       theme_classic()
   })
