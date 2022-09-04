@@ -21,7 +21,8 @@ shinyUI(fluidPage(
             selectInput("nombre_filtro", 
                         label = "Selecciona Nombre", 
                         choices = nombres, 
-                        selected = "Juan"),
+                        selected = c("Juan","Maria"),
+                        multiple = TRUE),
             
             sliderInput("anio_filtro", 
                         label = "Selecciona Anio",
@@ -32,8 +33,9 @@ shinyUI(fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("Grafico_por_anio"),
-            plotOutput("Nube_de_palabras")
+          plotlyOutput("Grafico_por_anio"),
+          plotOutput("Nube_de_palabras")
         )
     )
 ))
+

@@ -13,19 +13,23 @@ library(shiny)
 
 shinyServer(function(input, output) {
 
-  output$Grafico_por_anio <- renderPlot({
+  output$Grafico_por_anio <- renderPlotly({
       
     grafico1 <- nomres_arg %>%
       filter(
-        nombre == input$nombre_filtro,
+        nombre %in% input$nombre_filtro,
         anio >= min(input$anio_filtro), 
         anio <= max(input$anio_filtro)
       )
-
-    ggplot(
-      data = grafico1,mapping = aes(x = anio, y = cantidad)) +
-      geom_col() + 
-      theme_classic()
+    
+    ggplotly(
+      ggplot(
+          data = grafico1,
+          mapping = aes(x = anio, y = cantidad, fill = nombre)
+        ) +
+        geom_col(position = "stack") +
+        theme_classic()
+    )
   })
   
   output$Nube_de_palabras <- renderPlot({

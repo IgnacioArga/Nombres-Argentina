@@ -3,6 +3,7 @@
 
 library(dplyr)
 library(ggplot2)
+library(ggthemes)
 
 # Importar datos ----------------------------------------------------------
 
@@ -47,8 +48,8 @@ ggplot(data = df_graficar_decada) +
 
 # Grafico cantidad por decada y nombre
 ggplot(data = df_graficar_decada) +
-  geom_col(mapping = aes(x = decada, y = cantidad, fill = nombre)) + 
-  theme_classic()
+  geom_col(mapping = aes(x = decada, y = cantidad, fill = nombre)) +
+  theme_tufte()
 
 # Grafico cantidad por decada y nombre en base 100%
 ggplot(data = df_graficar_decada) +
@@ -148,5 +149,5 @@ anim = staticplot + transition_states(anio, transition_length = 4, state_length 
        subtitle  =  "Top 10 Nombres",
        caption  = "Cantidad de nombres en miles")
 
-animate(anim, 200, fps = 5, 
+animate(anim, nframes = 400, fps = 1, 
         renderer = gifski_renderer("gganim.gif"))
